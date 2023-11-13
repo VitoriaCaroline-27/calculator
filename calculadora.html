@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            
+     }
+        .fundo{
+            background-image: linear-gradient(45deg,black,#ca82c6);
+            height: 100vh; /*altura= ocupando 100vh dos elementos vh= utilizado para a cor pegar toda a página */
+            color: white;/*cor das fontes dos elementos*/
+            font-family: Arial, Helvetica, sans-serif;/*muda o formato das letras(fontes)*/
+            text-align: center;/*atualizou meu nome vitória caroline para o centro calculadora e resultado tambem*/
+        }
+        .calculadora{
+            position: absolute;/*vai ocupar o tamanho dela mesma*/
+            background-color:rgba(0, 0, 0, 0.8);/*rgba é a tranparencia do fundo principal da calculadora o fundo mais preto*/
+            top: 50%;/*ou seja 50% do topo*/
+            left:50%;/*ou seja 50% para a direita*/
+            transform: translate(-50%,-50%);/*para centralizar -50% eixo X e Y*/
+            border-radius: 15px;/*arredonda as bordas da calculadora*/
+            padding: 15px;/*espaço entre os elementos e as bordas*/
+        }
+        .botao{
+            width: 50px;/*largura dos botões*/
+            height: 50px;/*altura dos botões*/
+            font-size: 25px;
+            margin: 3px;/*espaço entre as margens dos botões*/
+            cursor: pointer;/*  conforme o mouse é passado em cima dos botões a seta do mouse muda e fica uma "mãozinha"*/
+            background-color: rgb(31,31,31);/*cor de fundo dos botões*/
+            border: none;/*tirou a borda dos botões*/
+            color:#fff;/*os botões ficam brancos*/
+        }
+        .botao:hover{
+            background-color: black;/*quando o mouse passar em cima a cor do botão muda para black*/
+        }
+        #resultado{
+            background-color: white;/*cor de fundo da parte de resultado*/
+            width: 207px; /*largura*/
+            height: 30px; /*altura*/
+            margin: 5px;
+            font-size: 25px; /*o tamanho da fonte do resultado final*/
+            color: black;/*cor da fonte do resultado*/
+            text-align: right;/*alinhação para a direita*/
+            padding: 5px;
+        }   
+    </style>
+</head>
+<body>
+    <div class="fundo">
+        <h1>Vitória Caroline</h1>
+        <div class="calculadora">
+            <h1>Calculadora</h1>
+            <p id="resultado"></p>
+            <table>
+                <tr>
+                    <td><button class="botao" onclick="clean('')">C</button></td>
+                    <td><button  class="botao" onclick="back('')"><</button></td>
+                    <td><button  class="botao" onclick="insert('/')">/</button></td>
+                    <td><button  class="botao" onclick="insert('*')">X</button></td>
+                </tr>
+                <table>
+                    <tr>
+                        <td><button  class="botao" onclick="insert('7')">7</button></td>
+                        <td><button  class="botao" onclick="insert('8')">8</button></td>
+                        <td><button  class="botao" onclick="insert('9')">9</button></td>
+                        <td><button  class="botao" onclick="insert('-')">-</button></td>
+                    </tr>
+                    <tr>
+                        <td><button  class="botao" onclick="insert('4')">4</button></td>
+                        <td><button  class="botao" onclick="insert('5')">5</button></td>
+                        <td><button  class="botao" onclick="insert('6')">6</button></td>
+                        <td><button  class="botao" onclick="insert('+')">+</button></td>
+                    </tr>
+                    <tr>
+                        <td><button  class="botao" onclick="insert('1')">1</button></td>
+                        <td><button  class="botao" onclick="insert('2')">2</button></td>
+                        <td><button  class="botao" onclick="insert('3')">3</button></td>
+                        <td rowspan="2"><button  class="botao" style="height: 106px" onclick="calcular('')">=</button></td><!-- esse style vai deixa somente o botão de = grande-->
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button class="botao" style="width:106px" onclick="insert('0')">0</button></td><!--aqui mudadmos a largura do botão 0 pelo style deixando maior de largura-->
+                        <td><button class="botao" onclick="insert('.')">.</button></td>
+                        
+                    </tr>
+            </table>
+        </div>
+
+    </div>
+    <script>
+        function insert(num)
+        {
+           var numero = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = numero + num;
+        }
+        function clean()
+        {
+            document.getElementById('resultado').innerHTML = "";
+        }
+        function back()
+        {
+            var resultado = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length -1);
+        }
+        function calcular()
+        {
+            var resultado = document.getElementById('resultado').innerHTML;
+            if(resultado)
+            {
+                 document.getElementById('resultado').innerHTML = eval(resultado);
+            }
+        }
+  
+    </script>
+</body>
+</html>
